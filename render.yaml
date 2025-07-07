@@ -1,0 +1,28 @@
+# Archivo de configuración "Blueprint" para Render.
+# Le dice a Render cómo construir y desplegar el servicio.
+
+services:
+  # Define un nuevo servicio web.
+  - type: web
+    # El nombre de tu servicio en Render.
+    name: sportplay-app
+    # ¡LA LÍNEA CLAVE! Especifica que el entorno es Java.
+    runtime: java
+    # La rama de GitHub a usar.
+    branch: main
+    # Comandos de construcción y de inicio.
+    buildCommand: "./mvnw clean package"
+    startCommand: "java -jar target/sportplay-0.0.1-SNAPSHOT.jar"
+    # Plan gratuito.
+    plan: free
+    # Configuración de las variables de entorno.
+    # ¡IMPORTANTE! Render leerá las variables que ya configuraste en el dashboard.
+    # No necesitas volver a poner las contraseñas aquí.
+    # Pero si quieres definirlas en código, puedes hacerlo así:
+    # envVars:
+    #   - key: SPRING_DATASOURCE_URL
+    #     value: jdbc:mysql://shuttle.proxy.rlwy.net:26352/railway
+    #   - key: SPRING_DATASOURCE_USERNAME
+    #     value: root
+    #   - key: SPRING_DATASOURCE_PASSWORD
+    #     fromSecret: true # Para no exponerla en el YAML
