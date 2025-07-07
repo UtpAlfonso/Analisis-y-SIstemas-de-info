@@ -1,12 +1,8 @@
 # Render Blueprint
+# Render Blueprint (Versión simplificada)
 services:
-  # Defines a web service
   - type: web
     name: sportplay-app
     runtime: docker
     dockerfilePath: ./Dockerfile
     plan: free
-    # Health check configuration
-    healthCheck:
-      path: /
-      initialDelaySeconds: 30
