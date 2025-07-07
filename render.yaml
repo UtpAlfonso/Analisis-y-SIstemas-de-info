@@ -1,16 +1,12 @@
-# Blueprint: Manual de instrucciones para Render
-
+# Render Blueprint
 services:
-  # Define un servicio de tipo "Web Service"
+  # Defines a web service
   - type: web
-    # El nombre que tendrá tu servicio en Render
     name: sportplay-app
-    # ¡LÍNEA CLAVE! Le decimos a Render que use Docker
     runtime: docker
-    # La ruta al Dockerfile que acabamos de crear
     dockerfilePath: ./Dockerfile
-    # El plan de precios gratuito
     plan: free
-    # Configuración de salud para que Render sepa que la app está viva
+    # Health check configuration
     healthCheck:
       path: /
+      initialDelaySeconds: 30
