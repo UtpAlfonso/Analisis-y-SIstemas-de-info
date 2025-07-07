@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:with="pageTitle='Catálogo de Productos'"
+      th:insert="~{layout :: html(content=~{::content})}">
+
+<th:block th:fragment="content">
+    <div class="container py-5">
+        <h1 class="text-center mb-4 animate__animated animate__fadeInDown">Nuestro Catálogo</h1>
+
+        <!-- Barra de búsqueda -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-6">
+                <form th:action="@{/catalogo}" method="get" class="d-flex">
+                    <input type="text" name="busqueda" class="form-control me-2" placeholder="Buscar productos..." th:value="${busqueda}">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            <!-- Iterar sobre los productos -->
+            <div class="col" th:each="producto : ${paginaProductos.content}" data-aos="fade-up">
+                <div class="card h-100 shadow-sm border-0 product-card">
+                    <a th:href="@{/producto/{id}(id=${producto.id})}">
+                       <img th:src="@{${producto.imagenUrl} ?: '/img/placeholder.png'}" class="card-img-top" th:alt="${producto.nombre}" style="height: 250px; object-fit: cover;">
+                    </a>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title" th:text="${producto.nombre}">Nombre del Producto</h5>
+                        <p class="card-text text-muted" th:text="${producto.categoria.nombre}">Categoría</p>
+                        <p class="card-text fw-bold fs-5 mt-auto" th:text="|S/ ${#numbers.formatDecimal(producto.precio, 1, 'COMMA', 2, 'POINT')}|">S/ 99.90</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-center pb-3">
+                        <a th:href="@{/producto/{id}(id=${producto.id})}" class="btn btn-outline-primary">Ver Detalle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mensaje si no hay resultados -->
+        <div th:if="${paginaProductos.empty}" class="text-center py-5">
+            <h3>No se encontraron productos</h3>
+            <p>Intenta con otra búsqueda o revisa nuestro catálogo completo.</p>
+        </div>
+
+        <!-- Paginación -->
+        <nav th:if="${paginaProductos.totalPages > 1}" class="mt-5" aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:classappend="${paginaProductos.first} ? 'disabled'">
+                    <a class="page-link" th:href="@{/catalogo(page=${currentPage - 1}, busqueda=${busqueda})}">Anterior</a>
+                </li>
+                <li class="page-item" th:each="i : ${#numbers.sequence(0, paginaProductos.totalPages - 1)}" th:classappend="${i == currentPage} ? 'active'">
+                    <a class="page-link" th:href="@{/catalogo(page=${i}, busqueda=${busqueda})}" th:text="${i + 1}"></a>
+                </li>
+                <li class="page-item" th:classappend="${paginaProductos.last} ? 'disabled'">
+                    <a class="page-link" th:href="@{/catalogo(page=${currentPage + 1}, busqueda=${busqueda})}">Siguiente</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</th:block>
+</html>

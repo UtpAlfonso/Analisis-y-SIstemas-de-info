@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:with="pageTitle='Bienvenido a SportPlay'"
+      th:insert="~{layout :: html(content=~{::content})}">
+
+<th:block th:fragment="content">
+    <div class="container-fluid p-0">
+        <!-- Hero Section -->
+        <div class="p-5 text-center bg-image rounded-3" style="background-image: url('/img/hero-background.jpg'); background-size: cover; background-position: center; height: 60vh;">
+            <div class="mask" style="background-color: rgba(0, 0, 0, 0.6); height: 100%; display: flex; align-items: center; justify-content: center;">
+                <div class="text-white animate__animated animate__fadeInUp">
+                    <h1 class="mb-3 display-4 fw-bold">SportPlay: Eleva tu Juego</h1>
+                    <h4 class="mb-3">Encuentra el mejor equipamiento para tu pasión</h4>
+                    <a class="btn btn-primary btn-lg" th:href="@{/catalogo}" role="button">Ver Catálogo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="container px-4 py-5" id="featured-3">
+        <h2 class="pb-2 border-bottom text-center" data-aos="fade-up">¿Por qué elegirnos?</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="feature col" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                    <i class="bi bi-award" style="padding: 1rem;"></i>
+                </div>
+                <h3 class="fs-2">Calidad Garantizada</h3>
+                <p>Solo trabajamos con las mejores marcas y proveedores para asegurar productos de alta durabilidad y rendimiento.</p>
+            </div>
+            <div class="feature col" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                    <i class="bi bi-truck" style="padding: 1rem;"></i>
+                </div>
+                <h3 class="fs-2">Envíos Rápidos</h3>
+                <p>Recibe tu equipamiento deportivo en la puerta de tu casa en tiempo récord. Entregas a nivel nacional.</p>
+            </div>
+            <div class="feature col" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                    <i class="bi bi-headset" style="padding: 1rem;"></i>
+                </div>
+                <h3 class="fs-2">Soporte 24/7</h3>
+                <p>Nuestro equipo de atención al cliente está siempre disponible para ayudarte con tus dudas y pedidos.</p>
+            </div>
+        </div>
+    </div>
+</th:block>
+</html>

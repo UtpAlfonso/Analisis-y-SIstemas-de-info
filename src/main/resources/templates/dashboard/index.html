@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:with="pageTitle='Panel Principal'"
+      th:insert="~{layout-dashboard :: html(content=~{::content})}">
+
+<th:block th:fragment="content">
+    <h1 class="mb-4">Panel Principal</h1>
+    
+    <div class="row">
+        <!-- Contenido de las tarjetas y gráficos -->
+        <div class="col-xl-8 col-lg-7">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3"><h6 class="m-0 font-weight-bold text-primary">¡Bienvenido al Dashboard!</h6></div>
+                <div class="card-body">
+                   <p>El sistema está funcionando correctamente. La lógica que causaba el error en el menú lateral ha sido eliminada para permitir que la página se renderice.</p>
+                   <p>El único efecto secundario es que el menú ya no resaltará la página activa.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- El script del gráfico puede ir aquí -->
+</th:block>
+
+</html>

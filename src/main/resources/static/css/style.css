@@ -1,0 +1,178 @@
+/*
+ * Hoja de Estilos Personalizada para SportPlay
+ */
+
+/* ==========================================================================
+   Configuración General y Variables
+   ========================================================================== */
+:root {
+    --primary-color: #0d6efd; /* Azul primario de Bootstrap */
+    --secondary-color: #6c757d;
+    --dark-color: #212529;
+    --light-color: #f8f9fa;
+    --font-family-base: 'Poppins', sans-serif; /* Se recomienda importar esta fuente desde Google Fonts */
+}
+
+/* Importar Google Font (opcional pero recomendado) - Añadir en el <head> del layout si se usa */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+
+body {
+    font-family: var(--font-family-base);
+    background-color: var(--light-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+
+/* ==========================================================================
+   Componentes del Header y Footer
+   ========================================================================== */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.navbar .nav-link {
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar .nav-link:hover {
+    color: var(--primary-color);
+}
+
+
+/* ==========================================================================
+   Estilos para la Página de Catálogo
+   ========================================================================== */
+.product-card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+.product-card .card-img-top {
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.product-card .card-body {
+    text-align: center;
+}
+
+.product-card .card-title {
+    font-weight: 500;
+    min-height: 48px; /* Asegura altura consistente para los títulos */
+}
+
+
+/* ==========================================================================
+   Estilos para la Página de Detalle de Producto
+   ========================================================================== */
+.detalle-producto h1 {
+    font-weight: 700;
+}
+
+
+/* ==========================================================================
+   Estilos para Formularios (Login, Registro)
+   ========================================================================== */
+.form-container {
+    max-width: 500px;
+    margin: 5rem auto;
+}
+
+.card-form {
+    border-radius: 1rem;
+    border: none;
+}
+
+
+/* ==========================================================================
+   Estilos para el Dashboard
+   ========================================================================== */
+.sidebar {
+    width: 280px;
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+    position: fixed; /* Fija el sidebar */
+    top: 0;
+    left: 0;
+    z-index: 100;
+    transition: all 0.3s;
+}
+
+.content {
+    margin-left: 280px; /* Deja espacio para el sidebar */
+    padding: 2rem;
+    width: calc(100% - 280px); /* Ajusta el ancho del contenido */
+}
+
+.sidebar .nav-link {
+    font-size: 1rem;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--primary-color);
+}
+
+.sidebar .nav-link:hover:not(.active) {
+    background-color: #343a40;
+}
+
+.card.border-left-primary {
+    border-left: .25rem solid var(--primary-color) !important;
+}
+.card.border-left-success {
+    border-left: .25rem solid #198754 !important;
+}
+.card.border-left-info {
+    border-left: .25rem solid #0dcaf0 !important;
+}
+.card.border-left-warning {
+    border-left: .25rem solid #ffc107 !important;
+}
+
+
+/* ==========================================================================
+   Clases de Utilidad y Sobrescrituras
+   ========================================================================== */
+.fw-bold {
+    font-weight: 700 !important;
+}
+
+.text-gray-300 {
+    color: #dddfeb !important;
+}
+
+.text-gray-800 {
+    color: #5a5c69 !important;
+}
+
+/* Media Query para hacer el dashboard responsivo en móviles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .content {
+        margin-left: 0;
+        width: 100%;
+    }
+    .main-container {
+        flex-direction: column;
+    }
+}

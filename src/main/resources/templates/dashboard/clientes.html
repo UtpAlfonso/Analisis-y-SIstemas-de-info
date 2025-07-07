@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:with="pageTitle='Gestión de Clientes'"
+      th:insert="~{layout-dashboard :: html(content=~{::content})}">
+
+<th:block th:fragment="content">
+    <h1 class="mb-4">Gestión de Clientes</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <h5 class="card-title">Listado de Clientes Registrados</h5>
+            <p class="card-text">
+                Tabla con todos los clientes del sistema.
+            </p>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre Completo</th>
+                            <th>Email</th>
+                            <th>Teléfono</th>
+                            <th>Fecha de Registro</th>
+                            <th>Rol</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Iterar sobre la lista de clientes proporcionada por el controlador -->
+                        <tr th:each="cliente : ${listaClientes}">
+                            <td th:text="${cliente.id}">1</td>
+                            <td th:text="|${cliente.nombre} ${cliente.apellidos}|">Juan Pérez</td>
+                            <td th:text="${cliente.email}">juan.perez@example.com</td>
+                            <td th:text="${cliente.telefono ?: 'No especificado'}">987654321</td>
+                            <td th:text="${#temporals.format(cliente.fechaRegistro, 'dd/MM/yyyy HH:mm')}">31/05/2024 10:30</td>
+                            <td th:text="${cliente.rol}">ROLE_CLIENTE</td>
+                        </tr>
+                        <!-- Mensaje que se muestra solo si la lista de clientes está vacía -->
+                        <tr th:if="${listaClientes.isEmpty()}">
+                            <td colspan="6" class="text-center text-muted">No hay clientes registrados.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</html>

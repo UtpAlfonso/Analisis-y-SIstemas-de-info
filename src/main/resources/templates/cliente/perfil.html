@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:with="pageTitle='Mi Perfil'"
+      th:insert="~{layout :: html(content=~{::content})}">
+
+<th:block th:fragment="content">
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Mi Perfil</h1>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div th:if="${perfilActualizado}" class="alert alert-success" th:text="${perfilActualizado}"></div>
+                <div class="card shadow-sm">
+                    <div class="card-body p-4">
+                        <form th:action="@{/perfil/actualizar}" th:object="${cliente}" method="post">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="email" th:field="*{email}" readonly>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nombre" class="form-label">Nombres</label>
+                                    <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="apellidos" class="form-label">Apellidos</label>
+                                    <input type="text" class="form-control" id="apellidos" th:field="*{apellidos}" required>
+                                </div>
+                            </div>
+                             <div class="mb-3">
+                                <label for="telefono" class="form-label">Teléfono</label>
+                                <input type="text" class="form-control" id="telefono" th:field="*{telefono}">
+                            </div>
+                             <div class="mb-3">
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="direccion" th:field="*{direccion}">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sección de Historial de Compras (Añadir lógica en el futuro) -->
+        <div class="row mt-5">
+             <div class="col-md-8 offset-md-2">
+                <h2 class="text-center mb-4">Historial de Compras</h2>
+                <p class="text-center text-muted">Aquí aparecerá tu historial de compras.</p>
+             </div>
+        </div>
+    </div>
+</th:block>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:with="pageTitle='Gestión de Ventas'"
+      th:insert="~{layout-dashboard :: html(content=~{::content})}">
+
+<th:block th:fragment="content">
+    <h1 class="mb-4">Gestión de Ventas</h1>
+    <div class="card shadow">
+        <div class="card-body">
+            <h5 class="card-title">Historial de Ventas</h5>
+            <p class="card-text">
+                Listado completo de todas las ventas registradas en el sistema.
+            </p>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID Venta</th>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Total</th>
+                            <th>Método de Pago</th>
+                            <th>ID Transacción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Iterar sobre la lista de ventas proporcionada por el controlador -->
+                        <tr th:each="venta : ${listaVentas}">
+                            <td th:text="${venta.id}">101</td>
+                            <td th:text="${venta.pedido.cliente.email}">cliente@example.com</td>
+                            <td th:text="${#temporals.format(venta.fechaVenta, 'dd/MM/yyyy HH:mm')}">31/05/2024 11:00</td>
+                            <td th:text="|S/ ${#numbers.formatDecimal(venta.totalVenta, 1, 'COMMA', 2, 'POINT')}|">S/ 150.00</td>
+                            <td th:text="${venta.pago.metodoPago}">TARJETA_CREDITO</td>
+                            <td th:text="${venta.pago.idTransaccion}">TXN-123456</td>
+                        </tr>
+                        <!-- Mensaje que se muestra solo si la lista de ventas está vacía -->
+                        <tr th:if="${listaVentas.isEmpty()}">
+                            <td colspan="6" class="text-center text-muted">No se han registrado ventas todavía.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</html>

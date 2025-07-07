@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<div th:fragment="sidebar" class="sidebar d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+    <a th:href="@{/dashboard}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <i class="bi bi-play-circle-fill me-2 fs-4"></i>
+        <span class="fs-4">SportPlay Dashboard</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <!-- LÍNEA PROBLEMÁTICA ELIMINADA -->
+            <a th:href="@{/dashboard}" class="nav-link text-white">
+                <i class="bi bi-speedometer2 me-2"></i> Panel Principal
+            </a>
+        </li>
+        <li>
+            <!-- LÍNEA PROBLEMÁTICA ELIMINADA -->
+            <a th:href="@{/dashboard/productos}" class="nav-link text-white">
+                <i class="bi bi-box-seam me-2"></i> Productos
+            </a>
+        </li>
+        <li>
+            <!-- LÍNEA PROBLEMÁTICA ELIMINADA -->
+            <a th:href="@{/dashboard/clientes}" class="nav-link text-white">
+                <i class="bi bi-people me-2"></i> Clientes
+            </a>
+        </li>
+        <li>
+            <!-- LÍNEA PROBLEMÁTICA ELIMINADA -->
+            <a th:href="@{/dashboard/ventas}" class="nav-link text-white">
+                <i class="bi bi-receipt me-2"></i> Ventas
+            </a>
+        </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle fs-4 me-2"></i>
+            <strong sec:authentication="principal.username"></strong>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" th:href="@{/}">Volver a la tienda</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                 <form th:action="@{/logout}" method="post" class="d-inline">
+                    <button type="submit" class="dropdown-item">Cerrar Sesión</button>
+                 </form>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

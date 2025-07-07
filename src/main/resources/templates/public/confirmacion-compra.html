@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:with="pageTitle='Compra Confirmada'"
+      th:insert="~{layout :: html(content=~{::content})}">
+
+<th:block th:fragment="content">
+    <div class="container text-center my-5">
+        <div class="py-5" data-aos="zoom-in">
+            <i class="bi bi-check-circle-fill text-success" style="font-size: 6rem;"></i>
+            <h1 class="display-4 mt-3">¡Gracias por tu compra!</h1>
+            <p class="lead">Tu pedido ha sido procesado exitosamente.</p>
+            <div th:if="${venta != null}">
+                 <p>Recibirás una confirmación por correo electrónico en breve.</p>
+                 <p><strong>Número de Venta:</strong> <span th:text="${venta.id}"></span></p>
+                 <p><strong>ID de Transacción:</strong> <span th:text="${venta.pago.idTransaccion}"></span></p>
+                 <p><strong>Monto Total:</strong> <span th:text="|S/ ${#numbers.formatDecimal(venta.totalVenta, 1, 'COMMA', 2, 'POINT')}|"></span></p>
+            </div>
+            <hr>
+            <a th:href="@{/catalogo}" class="btn btn-primary btn-lg mt-3">Seguir Comprando</a>
+            <a th:href="@{/perfil}" class="btn btn-outline-secondary btn-lg mt-3">Ver Historial de Compras</a>
+        </div>
+    </div>
+</th:block>
+</html>
